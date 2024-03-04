@@ -31,7 +31,7 @@ export default function ThirdSection() {
               <Link
                 href="#"
                 key={index}
-                className="w-[25%] h-[20vw] flex items-center justify-center cursor-pointer"
+                className="w-[25%] h-[20vh] flex items-center justify-center cursor-pointer"
               >
                 <div className="relative w-full h-full">
                   <Image
@@ -54,7 +54,7 @@ export default function ThirdSection() {
               <Link
                 href="#"
                 key={index}
-                className="w-[25%] h-[20vw] flex items-center justify-center cursor-pointer"
+                className="w-[25%] h-[20vh] flex items-center justify-center cursor-pointer"
               >
                 <div className="relative w-full h-full">
                   <Image
@@ -68,6 +68,7 @@ export default function ThirdSection() {
             );
           })}
         </motion.div>
+
         <motion.div
           className="relative mt-[100px]  w-full z-[20] shadow-lg"
           style={{ height }}

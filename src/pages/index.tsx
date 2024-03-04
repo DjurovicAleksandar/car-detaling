@@ -16,6 +16,8 @@ export default function Home() {
   const date = new Date();
   const buttonX = useTransform(scrollYProgress, [0, 1], [0, 300]);
   const buttonRotate = useTransform(scrollYProgress, [0, 1], [0, 360]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [0, 0.8]);
+  const y = useTransform(scrollYProgress, [0, 1], [150, 0]);
 
   return (
     <>
@@ -31,16 +33,17 @@ export default function Home() {
           <h2 data-scroll data-scroll-speed={0.2} className="text-9xl ">
             Lets detail your car
           </h2>
-          <p
+          <motion.p
             data-scroll
             data-scroll-speed={0.2}
             className="w-1/2 mt-10 font-thin"
+            style={{ opacity: opacity, y: y }}
           >
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem
             soluta voluptate nisi vel accusamus numquam quos, magni deleniti.
             harum minima sunt animi ducimus recusandae maxime? Consequuntur
             illum tempora similique ullam.
-          </p>
+          </motion.p>
           <div
             data-scroll
             data-scroll-speed={0.1}
