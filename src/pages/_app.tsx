@@ -21,7 +21,7 @@ const AppWrapper: FC<AppWrapperProps> = ({ children }) => {
     <div className="overflow-hidden">
       <Navigation />
       {children}
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };
