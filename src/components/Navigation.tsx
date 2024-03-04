@@ -36,7 +36,7 @@ function Navigation() {
     >
       <div className="text-4xl">Logo</div>
       <div className="flex gap-6">
-        <Link href="#">Home</Link>
+        <Link href="/">Home</Link>
         <Link href="/usluge">Services</Link>
         <Link href="/kontakt">Contact</Link>
       </div>

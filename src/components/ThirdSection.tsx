@@ -70,12 +70,12 @@ export default function ThirdSection() {
         </motion.div>
 
         <motion.div
-          className="relative mt-[100px]  w-full z-[20] shadow-lg"
+          className="relative mt-[100px]  w-full z-[20]"
           style={{ height }}
           data-scroll
-          data-scroll-speed="0.1"
+          data-scroll-speed="0.01"
         >
-          <div className="h-[1550%] w-[120%] bg-black -left-[10%] z-1 absolute inset-0 rounded-b-full shadow-lg shadow-black/80"></div>
+          <div className="h-[1550%] w-[120%] bg-black -left-[10%] z-1 absolute inset-0 rounded-b-full"></div>
         </motion.div>
       </div>
     </>

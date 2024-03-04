@@ -3,21 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/*html.lenis {
-  height: auto;
-}
-.lenis.lenis-smooth {
-  scroll-behavior: auto;
-}
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-} */
 * {
   margin: 0;
   padding: 0;
@@ -35,17 +20,17 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 0.4rem;
-  height: 0.4rem;
-  display: none;
+  width: 0.1rem;
+  height: 0.2rem;
+  /* display: none; */
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: black;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #000;
+  background: #facc15;
   border-radius: 3.75rem;
 }
 
@@ -63,4 +48,23 @@ body {
 
 .gallery {
   clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
+}
+
+input::placeholder,
+textarea::placeholder {
+  transition: transform 0.3s ease-in-out;
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+  transform: translate(-16px, -20px);
+  font-size: 10px;
+}
+
+.map {
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
 }

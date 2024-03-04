@@ -28,7 +28,7 @@ const ServicesArray: FC<ServiceArrayProps> = ({
   choosenImage,
   setChoosenImage,
 }) => {
-  const [showIt, setShowIt] = useState<boolean>(false);
+  const [showIt, setShowIt] = useState<boolean>(true);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const mousePosition = {
     x: useSpring(0, spring),
@@ -49,24 +49,27 @@ const ServicesArray: FC<ServiceArrayProps> = ({
     <div
       onMouseMove={mouseMove}
       className={`mt-[100px] relative`}
-      onMouseEnter={() => {
-        setShowIt(true);
-      }}
-      onMouseLeave={() => {
-        setShowIt(false);
-      }}
+      // onMouseEnter={() => {
+      //   setShowIt(true);
+      // }}
+      // onMouseLeave={() => {
+      //   setShowIt(false);
+      // }}
     >
       {services.map(({ name, image }, i) => {
         return (
           <div
             onMouseEnter={() => {
+              setShowIt(true);
               setChoosenImage(i);
-              if (videoRef.current === null) return;
-              videoRef.current.play();
+              if (videoRef.current) {
+                videoRef.current.play();
+              }
             }}
             onMouseLeave={() => {
+              setShowIt(false);
               if (videoRef.current === null) return;
-              //   videoRef.current.pause();
+              videoRef.current.pause();
             }}
             key={i}
             className={`w-full uppercase text-[3vw] flex justify-end pt-8 pb-1 cursor-pointer opacity-50 hover:opacity-100 ${
@@ -79,21 +82,22 @@ const ServicesArray: FC<ServiceArrayProps> = ({
           </div>
         );
       })}
-      {showIt && (
-        <motion.div
-          className="h-[15rem] w-[15rem] absolute top-0 -left-[30%] overflow-hidden z-[10]"
-          style={{ x, y }}
-        >
-          <video
-            ref={videoRef}
-            src="http://mocogledala.co/wp-content/uploads/2024/03/1374590-Person-Polish-Black-1080X1920.mp4"
-            preload="none"
-            muted
-            loop
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
-      )}
+
+      <motion.div
+        className={`h-[15rem] w-[15rem] absolute top-0 -left-[30%] overflow-hidden z-[10] ${
+          showIt ? "block" : "hidden"
+        }`}
+        style={{ x, y }}
+      >
+        <video
+          ref={videoRef}
+          src="http://mocogledala.co/wp-content/uploads/2024/03/1374590-Person-Polish-Black-1080X1920.mp4"
+          preload="none"
+          muted
+          loop
+          className="w-full h-full object-cover"
+        />
+      </motion.div>
     </div>
   );
 };

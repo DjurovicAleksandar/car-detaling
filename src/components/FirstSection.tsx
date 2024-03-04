@@ -75,7 +75,7 @@ export default function FirstSection() {
 
     timeline.fromTo(
       backgroundVideo.current,
-      { clipPath: `circle(30%)` },
+      { clipPath: `circle(35%)` },
       { clipPath: "circle(100%)", duration: 1 }
     );
   }, []);
@@ -99,7 +99,8 @@ export default function FirstSection() {
             loop
             className="w-full h-full object-cover"
           />
-          <div className="absolute bottom-0 h-full w-full bg-gradient-to-t from-[#000] to-transparent"></div>
+          <div className="absolute bottom-0 h-1/2 w-full bg-gradient-to-t from-[#000000f2] to-transparent"></div>
+          <div className="absolute bottom-0 h-1/2 w-full bg-gradient-to-t from-[#000000f2] to-transparent"></div>
         </div>
         {/* Overlay */}
         <div
