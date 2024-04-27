@@ -6,7 +6,7 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import detaling from "@/assets/image/second/detaling.jpg";
 
 const phraseSubtitle =
-  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus dolore in, maxime tempore, eum, autem minima aperiam iste!";
+  "Naša stručnost osigurava da vaše vozilo dobije najviši nivo pažnje i brige. Dovodimo vaše vozilo do perfekcije, pružajući vam potpuno poverenje u naš rad i rezultate.";
 
 const slideUp = {
   initial: {
@@ -41,12 +41,16 @@ export default function SecondSection() {
     <>
       <div ref={nextSectionRef} className="w-full h-screen bg-[#000]">
         <div className="w-full h-full relative">
-          <div className="w-full absolute inset-0 p-24 flex items-start justify-end">
-            <p className=" text-white text-2xl margin-0 w-1/2 mt-20 z-10">
-              {phraseSubtitle.split(" ").map((word, i) => {
+          <div className="w-full absolute inset-0 p-4 md:p-24 flex items-start justify-start md:justify-end">
+            <p
+              data-scroll
+              data-scroll-speed={0.2}
+              className=" text-white margin-0 w-full md:w-1/2 mt-40 md:mt-20 z-10"
+            >
+              {phraseSubtitle.split("  ").map((word, i) => {
                 return (
                   <span
-                    className="inline-flex text-4xl relative overflow-hidden"
+                    className="inline-flex text-2xl lg:text-4xl relative overflow-hidden"
                     key={`${i}`}
                   >
                     <motion.span
@@ -70,7 +74,7 @@ export default function SecondSection() {
           <Image
             src={detaling}
             alt="Detaling"
-            className="w-full h-full"
+            className="w-full h-full object-cover"
             data-scroll
             data-scroll-speed="0.1"
           />

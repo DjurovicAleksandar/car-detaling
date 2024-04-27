@@ -57,8 +57,8 @@ textarea::placeholder {
 
 input:focus::placeholder,
 textarea:focus::placeholder {
-  transform: translate(-16px, -20px);
-  font-size: 10px;
+  transform: translate(-16px, -26px);
+  font-size: 14px;
 }
 
 .map {
@@ -67,4 +67,22 @@ textarea:focus::placeholder {
   -ms-filter: grayscale(100%);
   -o-filter: grayscale(100%);
   filter: grayscale(100%);
+}
+
+.link {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.link:after {
+  display: block;
+  content: "";
+  width: inherit;
+  border-bottom: solid 2px #fff;
+  transform: scaleX(0);
+  transition: transform 250ms ease-in-out;
+}
+
+.link:hover:after {
+  transform: scaleX(1);
 }

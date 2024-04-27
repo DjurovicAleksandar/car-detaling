@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { FC, useEffect, useLayoutEffect } from "react";
 import Link from "next/link";
-import Navigation from "@/components/Navigation";
+import Navigation from "@/components/navigation/Navigation";
 import Footer from "@/components/Footer";
 
 interface AppWrapperProps {

@@ -14,30 +14,37 @@ function Contact() {
   const y = useTransform(scrollYProgress, [0, 1], [200, 0]);
 
   return (
-    <div ref={contactRef} className="w-full bg-black/95 p-24 pt-48">
-      <h2 data-scroll data-scroll-speed={0.2} className="text-8xl w-1/2">
-        You need help with your car? Get in touch with us
+    <div
+      ref={contactRef}
+      className="w-full bg-black/95 p-4 md:px-28 md:pt-[7rem]"
+    >
+      <h2
+        data-scroll
+        data-scroll-speed={0.2}
+        className="text-5xl lg:text-8xl w-full pt-40 md:pt-20 md:w-4/5"
+      >
+        Treba Vam pomoć oko auta? Ne ustručavajte se kontaktirati nas.
       </h2>
-      <div className="flex items-start gap-[3vw]">
+      <div className="flex flex-col md:flex-row items-start py-20 gap-[3vw]">
         {/* form */}
         <form className="w-full" data-scroll data-scroll-speed={0.1}>
           <input
             type="text"
             placeholder="Ime i prezime *"
-            className="w-full px-4 pt-12 border-collapse bg-transparent border-b"
+            className="w-full px-4 pt-10 pb-4 border-collapse bg-transparent border-b"
           />
           <input
             type="tel"
             placeholder="Broj telefona *"
-            className="w-full px-4 pt-12 border-collapse bg-transparent border-b"
+            className="w-full px-4 pt-10 pb-4 border-collapse bg-transparent border-b"
           />
           <input
             type="email"
             placeholder="Email adresa (opciono)"
-            className="w-full px-4 pt-12 border-collapse bg-transparent border-b"
+            className="w-full px-4 pt-10 pb-4 border-collapse bg-transparent border-b"
           />
           <select
-            className="w-full px-4 pt-12 border-collapse bg-transparent border-b text-white/60"
+            className="w-full px-4 pt-10 pb-4 border-collapse bg-transparent border-b text-white/60"
             defaultValue=""
           >
             <option value="" disabled hidden>
@@ -70,17 +77,17 @@ function Contact() {
         <div
           data-scroll
           data-scroll-speed={0.1}
-          className="w-1/2 flex flex-col items-start gap-10 self-center "
+          className="w-full md:w-1/2 flex flex-col items-start gap-10 self-center "
         >
-          <h2 className="text-3xl">Contact details</h2>
+          <h2 className="text-3xl text-redCol">Kontaktiraj nas</h2>
           <Link className="font-bold" href="mailto:info@cardetaling.com">
             info@cardetaling.com{" "}
           </Link>
           <Link className="font-bold" href="tel:+312223331312">
             +312223331312
           </Link>
-          <h2 className="text-3xl ">Business details</h2>
-          <h1 className="font-bold">Car Detaling Sikima</h1>
+          <h2 className="text-3xl text-redCol">Podaci o firmi</h2>
+          <h1 className="font-bold">Sikima Auto Detaling </h1>
           <p className="font-bold">
             Ulica Radomira Putnika 48, 71234 Lukavica, Bosna i Hercegovina
           </p>

@@ -1,16 +1,29 @@
 import Image from "next/image";
-import detaling from "@/assets/image/second/detaling.jpg";
-import carPolishing from "@/assets/image/services/carPolishing.jpg";
+import keramickaZastita from "@/assets/image/second/keramicka-zastita.jpg";
+import carPolishing from "@/assets/image/second/poliranje-rupes.jpg";
+import dubinsko from "@/assets/image/second/dubinsko-pranje-vozila.jpg";
+import detailing from "@/assets/image/second/detailingEnt.jpg";
+
 import { FC, useEffect, useRef, useState } from "react";
 import { useSpring, motion } from "framer-motion";
+import Link from "next/link";
 
 // http://mocogledala.co/wp-content/uploads/2024/03/1374590-Person-Polish-Black-1080X1920.mp4
 
 const services = [
-  { name: "Detaling", image: detaling },
-  { name: "Poliranje", image: carPolishing },
-  { name: "Keramika", image: detaling },
-  { name: "Premium pranje", image: carPolishing },
+  { name: "Poliranje", href: "poliranje", image: carPolishing },
+  {
+    name: "Keramička zaštita",
+    href: "keramicka-zastita",
+    image: keramickaZastita,
+  },
+  { name: "Dubinsko pranje", href: "dubinsko-pranje", image: dubinsko },
+  {
+    name: "Detailing enterijera",
+    href: "detailing-enterijera",
+    image: detailing,
+  },
+  { name: "Korekcija laka", href: "korekcija-laka", image: carPolishing },
 ];
 
 const spring = {
@@ -22,6 +35,7 @@ const spring = {
 interface ServiceArrayProps {
   setChoosenImage: (value: number) => void;
   choosenImage: number | null;
+  allServices?: [];
 }
 
 const ServicesArray: FC<ServiceArrayProps> = ({
@@ -56,7 +70,7 @@ const ServicesArray: FC<ServiceArrayProps> = ({
       //   setShowIt(false);
       // }}
     >
-      {services.map(({ name, image }, i) => {
+      {services.map(({ name, image, href }, i) => {
         return (
           <div
             onMouseEnter={() => {
@@ -72,32 +86,19 @@ const ServicesArray: FC<ServiceArrayProps> = ({
               videoRef.current.pause();
             }}
             key={i}
-            className={`w-full uppercase text-[3vw] flex justify-end pt-8 pb-1 cursor-pointer opacity-50 hover:opacity-100 ${
+            className={`w-full uppercase text-xl md:text-3xl lg:text-5xl flex justify-end pt-8 pb-1 md:pb-3 cursor-pointer opacity-50 hover:opacity-100 ${
               i === services.length - 1 ? "border-t border-b" : "border-t"
             } group duration-300 ease-in relative `}
           >
-            <span className="group-hover:scale-105 duration-300 group-hover:-translate-x-6 group-hover:-translate-y-4">
+            <Link
+              href={href}
+              className="group-hover:scale-105 duration-300 group-hover:-translate-x-6 group-hover:-translate-y-4"
+            >
               {name}
-            </span>
+            </Link>
           </div>
         );
       })}
-
-      <motion.div
-        className={`h-[15rem] w-[15rem] absolute top-0 -left-[30%] overflow-hidden z-[10] ${
-          showIt ? "block" : "hidden"
-        }`}
-        style={{ x, y }}
-      >
-        <video
-          ref={videoRef}
-          src="http://mocogledala.co/wp-content/uploads/2024/03/1374590-Person-Polish-Black-1080X1920.mp4"
-          preload="none"
-          muted
-          loop
-          className="w-full h-full object-cover"
-        />
-      </motion.div>
     </div>
   );
 };

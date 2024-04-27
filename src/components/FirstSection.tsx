@@ -7,7 +7,7 @@ import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
-const phraseTitle = "CAR DETALING";
+const phraseTitle = "AUTO DETAILING SIKIMA";
 
 const opacity = {
   initial: {
@@ -31,31 +31,29 @@ export default function FirstSection() {
   const motionControls = useAnimation();
 
   useEffect(() => {
-    if (videoRef.current === null) return;
-    videoRef.current.play();
-  }, []);
-
-  useEffect(() => {
     setTimeout(() => {
       controls.start("open");
     }, 700);
   }, [controls]);
 
   useEffect(() => {
+    if (videoRef.current !== null) {
+      videoRef.current.play();
+    }
+  }, []);
+
+  useEffect(() => {
     const interval = setInterval(() => {
-      // Animate to the next section
       motionControls.start({
         y: 0,
       });
 
-      // Wait for a short duration
       setTimeout(() => {
-        // Animate back to the original position
         motionControls.start({
           y: -10,
         });
-      }, 1000); // Adjust the duration between animations as needed
-    }, 2000); // Adjust the total duration of the loop as needed
+      }, 1000);
+    }, 2000);
 
     // Clear the interval when the component is unmounted
     return () => clearInterval(interval);
@@ -82,13 +80,13 @@ export default function FirstSection() {
 
   return (
     <>
-      <header className="w-full  relative overflow-hidden bg-black flex justify-center">
+      <header className="w-full relative overflow-hidden bg-black flex justify-center">
         {/* Video */}
         <div
           ref={backgroundVideo}
           data-scroll
           data-scroll-speed="-0.2"
-          className="relative w-full h-[150vh]"
+          className="relative w-full h-[100vh] md:h-[150vh]"
         >
           <video
             ref={videoRef}
@@ -105,12 +103,12 @@ export default function FirstSection() {
         {/* Overlay */}
         <div
           ref={container}
-          className="absolute inset-0 w-full h-full p-24 pt-48 pb-2 text-gray-100 flex flex-col items-center justify-start"
+          className="absolute inset-0 w-full h-full mt-0 md:mt-14 lg:mt-40 p-4 md:p-24 pt-48 pb-2 text-gray-100 flex flex-col items-center justify-start"
         >
           <h1
             data-scroll
             data-scroll-speed="0.2"
-            className="text-[14rem] leading-[12rem] opacity-70 text-center"
+            className="text-6xl md:text-8xl lg:text-[12rem] leading-[5rem] md:leading-[8rem] lg:leading-[12rem] opacity-70 text-center"
           >
             {phraseTitle
               .replaceAll(" ", "-")
@@ -138,7 +136,7 @@ export default function FirstSection() {
               })}
           </h1>
           <motion.p
-            className="font-thin w-1/2 text-[1.2rem] opacity-70 text-center"
+            className="font-medium text-redCol w-full md:w-1/2 text-2xl lg:text-[2.2rem] mt-10 opacity-70 text-center"
             initial={{
               y: "5px",
               opacity: 0,
@@ -155,10 +153,7 @@ export default function FirstSection() {
             data-scroll
             data-scroll-speed="0.2"
           >
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus
-            dolore in, maxime tempore, eum, autem minima aperiam iste doloribus
-            id quos saepe quisquam amet velit temporibus at! Quidem, possimus
-            ipsum!
+            AUTO DETAILING | AUTO CENTAR
           </motion.p>
           <AnimatePresence mode="wait">
             <motion.button
