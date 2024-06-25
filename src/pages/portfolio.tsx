@@ -35,8 +35,8 @@ const Portfolio = () => {
               data-scroll-speed={0.2}
               className="h-[400px] md:h-[350px] flex flex-col gap-y-10"
             >
-              <h1 className="text-7xl lg:text-9xl text-left capitalize">
-                naš portfolio
+              <h1 className="text-5xl lg:text-8xl text-left capitalize">
+                naša galerija | naš rad
               </h1>
               <p className="text-lg lg:text-xl w-full md:w-2/3">
                 Dobrodošli u Sikima Auto Detailing portfolio, gdje sjaj susreće

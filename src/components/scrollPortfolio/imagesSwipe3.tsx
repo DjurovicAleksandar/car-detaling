@@ -2,10 +2,10 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { motion, useMotionValue } from "framer-motion";
 
 const imgs = [
-  "/portfolio/audirs7.jpg",
-  "/portfolio/audirs7.jpg",
-  "/portfolio/audirs7.jpg",
-  "/portfolio/audirs7.jpg",
+  "/portfolio/audi.jpg",
+  "/portfolio/golf8.jpg",
+  "/portfolio/tiguan.jpg",
+  "/portfolio/audis6.jpg",
 ];
 
 const DRAG_BUFFER = 50;
@@ -49,10 +49,9 @@ export const ImagesSwipe3 = () => {
   };
 
   return (
-    <div className="relative pt-8 overflow-hidden">
-      <div className="flex flex-col pb-3">
-        <h4 className="uppercase text-3xl">Audi rs7</h4>
-        <div className="border w-[19rem]"></div>
+    <div className="relative overflow-hidden pt-10">
+      <div className="flex flex-col pb-10">
+        <div className="border w-full md:w-1/2"></div>
       </div>
       <motion.div
         drag="x"

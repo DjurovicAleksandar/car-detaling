@@ -1,10 +1,72 @@
+import axios from "axios";
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useTransform, useScroll } from "framer-motion";
 import Magnetic from "@/components/Magnetic";
 import Head from "next/head";
 
 function Contact() {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    phone: "",
+    email: "",
+    services: "",
+    message: "",
+  });
+
+  const [formError, setFormError] = useState("");
+  const [formSuccess, setFormSuccess] = useState(false);
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { name, value } = e.target as HTMLInputElement | HTMLTextAreaElement;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post("/api/sendEmail", formData);
+      setFormError("");
+      setFormSuccess(true);
+
+      // clear data from form
+      setFormData({
+        fullName: "",
+        phone: "",
+        email: "",
+        services: "",
+        message: "",
+      });
+
+      setTimeout(() => setFormSuccess(false), 2000);
+    } catch (err: any) {
+      let errorMessage = "Error prilikom slanja Email-a";
+      if (err.response) {
+        // The request was made, but the server responded with an error
+        errorMessage = err.response.data.message || err.response.statusText;
+      } else if (err.request) {
+        // The request was made, but no response was received
+        errorMessage = "Error prilikom slanja mejla";
+      } else {
+        errorMessage = err.message || "Nepoznat error";
+      }
+
+      console.error("Error prilikom ispunjavanja forme:", errorMessage);
+
+      setFormError(errorMessage);
+      setFormSuccess(false);
+    }
+  };
+
   const contactRef = useRef<null | HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: contactRef,
@@ -49,51 +111,89 @@ function Contact() {
           </h2>
           <div className="flex flex-col md:flex-row items-start py-20 gap-[3vw]">
             {/* form */}
-            <form className="w-full" data-scroll data-scroll-speed={0.1}>
+            <form
+              onSubmit={handleSubmit}
+              className="w-full"
+              data-scroll
+              data-scroll-speed={0.1}
+            >
               <input
                 type="text"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleChange}
                 placeholder="Ime i prezime *"
                 className="w-full px-4 pt-10 pb-4 border-collapse bg-transparent border-b"
+                required
               />
               <input
                 type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
                 placeholder="Broj telefona *"
                 className="w-full px-4 pt-10 pb-4 border-collapse bg-transparent border-b"
+                required
               />
               <input
                 type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="Email adresa (opciono)"
                 className="w-full px-4 pt-10 pb-4 border-collapse bg-transparent border-b"
               />
               <select
+                name="services"
+                value={formData.services}
+                onChange={handleChange}
                 className="w-full px-4 pt-10 pb-4 border-collapse bg-transparent border-b text-white/60"
-                defaultValue=""
+                required
               >
                 <option value="" disabled hidden>
                   Odaberite uslugu
                 </option>
-                <option className="bg-black border-none" value="poliranje">
+                <option
+                  className="bg-black border-none text-xl"
+                  value="poliranje"
+                >
                   Poliranje
                 </option>
-                <option className="bg-black border-none" value="pranje">
+                <option
+                  className="bg-black border-none text-xl pt-10"
+                  value="pranje"
+                >
                   Pranje
                 </option>
-                <option className="bg-black border-none" value="detaling">
+                <option
+                  className="bg-black border-none text-xl"
+                  value="detaling"
+                >
                   Detaling
                 </option>
               </select>
               <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
                 placeholder="Poruka"
                 className="w-full px-4 pt-6 border-collapse bg-transparent border-b resize-none h-36"
+                required
               />
 
               <Magnetic xSpread={0.2} ySpread={0.2}>
-                <input
+                <button
                   type="submit"
-                  value="Pošalji"
                   className="w-full mt-4 p-4 text-center bg-yellow-400 rounded-md cursor-pointer"
-                />
+                >
+                  Pošalji
+                </button>
               </Magnetic>
+              {formSuccess && (
+                <p className="text-md text-left font-light pt-4 text-lighterCol opacity-75">
+                  Uspješno ste poslali mejl.
+                </p>
+              )}
             </form>
             {/* info */}
             <div
@@ -102,12 +202,13 @@ function Contact() {
               className="w-full md:w-1/2 flex flex-col items-start gap-10 self-center "
             >
               <h2 className="text-3xl text-redCol">Kontaktiraj nas</h2>
-              <Link className="font-bold" href="mailto:info@cardetaling.com">
-                info@cardetaling.com{" "}
+              <Link
+                className="font-bold animate-bounce"
+                href="mailto:autodetailingsikima@gmail.com"
+              >
+                autodetailingsikima@gmail.com{" "}
               </Link>
-              <Link className="font-bold" href="tel:+312223331312">
-                +312223331312
-              </Link>
+              <h4 className="font-bold">+387 66 704 359</h4>
               <h2 className="text-3xl text-redCol">Podaci o firmi</h2>
               <h1 className="font-bold">Sikima Auto Detaling </h1>
               <p className="font-bold">

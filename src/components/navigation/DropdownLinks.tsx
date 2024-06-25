@@ -1,128 +1,56 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
-import React, { Key, useEffect, useState } from "react";
+import React, { useState } from "react";
+import { navLinks } from "./Navigation";
+import { IoIosArrowDown } from "react-icons/io";
 
-export type links = {
-  id: Key;
-  link: string;
-  href: string;
-};
-
-export const navLinks: links[] = [
-  {
-    id: 1,
-    link: "Poliranje",
-    href: "poliranje",
-  },
-  {
-    id: 2,
-    link: "Keramička zaštita",
-    href: "keramicka-zastita",
-  },
-  {
-    id: 3,
-    link: "Dubinsko pranje",
-    href: "dubinsko-pranje",
-  },
-  {
-    id: 4,
-    link: "Detailing enterijera",
-    href: "detailing-enterijera",
-  },
-  {
-    id: 5,
-    link: "Korekcija laka",
-    href: "korekcija-laka",
-  },
-];
-
-interface DropdownProps {
-  isCurrRoute: (route: string) => void;
-  webRoute: string;
-  mobile?: boolean;
-}
-
-const DropdownList: React.FC<DropdownProps> = ({
-  isCurrRoute,
-  webRoute,
-  mobile,
-}) => {
-  const [open, setOpen] = useState(false);
-  const router = useRouter();
-
-  useEffect(() => {
-    const handleRoute = (url: string) => {
-      console.log("Route is changed to:", url);
-
-      setOpen(false);
-    };
-
-    const handleScroll = () => setOpen(false);
-
-    router.events.on("routeChangeStart", handleRoute);
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      router.events.off("routeChangeStart", handleRoute);
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [router]);
+const DropdownLinks = ({ closeMenu }: { closeMenu: () => void }) => {
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
-    isCurrRoute("/usluge");
-    setOpen(!open);
+    setIsOpen(!isOpen);
   };
-
   return (
-    <div className="relative">
-      <button
-        onClick={toggleDropdown}
-        className={`${
-          !mobile
-            ? "before:absolute before:-top-14 before:w-full before:h-5 "
-            : ""
-        } relative ${
-          webRoute === "/usluge" ? "before:block" : "before:hidden"
-        } hover:before:block "`}
-      >
-        <span>USLUGE</span>
-        <svg
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          className={`inline w-4 h-4 mt-1 ml-1 transition-transform duration-200 transform md:-mt-1 ${
-            open ? "rotate-180" : "rotate-0"
-          }`}
+    <div className="flex flex-col gap-5">
+      <Link onClick={closeMenu} className="link" href="/">
+        početna
+      </Link>
+      <div className="relative group h-full ">
+        <p
+          onClick={toggleDropdown}
+          className="flex flex-row items-center cursor-pointer gap-2"
         >
-          <path
-            fillRule="evenodd"
-            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-            clipRule="evenodd"
-          ></path>
-        </svg>
-      </button>
-      {open && (
-        <div
-          className="absolute text-left items-center justify-center w-[13rem] -left-11 md:-left-0 mt-2 md:shadow-lg md:w-48"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="bg-zinc-800 md:bg-zinc-800 lg:shadow w-full">
-            <ul className="w-full h-full">
-              {navLinks.map((link) => (
-                <Link key={link.id} href={link.href}>
-                  <li className="w-full duration-300 ease-linear md:hover:bg-black hover:text-white hover:font-semibold p-2 md:p-4">
-                    <span className="uppercase text-sm md:text-lg">
-                      {link.link}
-                    </span>
-                  </li>
-                </Link>
-              ))}
-            </ul>
-          </div>
+          <span>Usluge</span>
+          <IoIosArrowDown
+            className={`transition-all ${isOpen ? "rotate-180" : ""}`}
+          />
+        </p>
+
+        {/* dropdown */}
+        <div className={`left-0 w-auto flex-col ${isOpen ? "flex" : "hidden"}`}>
+          {navLinks.map((link) => (
+            <Link
+              key={link.id}
+              href={link.href}
+              className="flex cursor-pointer items-center text-gray-400 py-2"
+              onClick={closeMenu}
+            >
+              <span className="whitespace-nowrap pl-5">{link.link}</span>
+            </Link>
+          ))}
         </div>
-      )}
+      </div>
+      <Link onClick={closeMenu} className="link" href="/portfolio">
+        galerija
+      </Link>
+      <Link
+        onClick={closeMenu}
+        className="link text-redCol font-medium"
+        href="/kontakt"
+      >
+        kontakt
+      </Link>
     </div>
   );
 };
 
-export default DropdownList;
+export default DropdownLinks;

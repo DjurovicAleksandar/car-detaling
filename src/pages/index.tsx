@@ -5,6 +5,7 @@ import ThirdSection from "@/components/ThirdSection";
 import SecondSection from "@/components/SecondSection";
 import FirstSection from "@/components/FirstSection";
 import Head from "next/head";
+import Counting from "@/components/Counting";
 
 export default function Home() {
   return (
@@ -32,6 +33,7 @@ export default function Home() {
         <FirstSection />
         <ProjectSection />
         <SecondSection />
+        <Counting />
         <ThirdSection />
       </div>
     </>

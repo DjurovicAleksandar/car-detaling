@@ -2,6 +2,9 @@ import { useScroll, motion, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Magnetic from "./Magnetic";
 import { useRouter } from "next/router";
+import Image from "next/image";
+
+import logo00 from "@/assets/logo/001.png";
 
 function Footer() {
   const router = useRouter();
@@ -56,11 +59,8 @@ function Footer() {
           </motion.button>
         </Magnetic>
       </div>
-      <div className="flex flex-col md:flex-row justify-between items-center md:items-end gap-y-4 py-8 mt-10 lg:mt-20">
-        <p>
-          Aleksandar Djurović <span className="text-redCol">&&</span> Davor
-          Bujak
-        </p>
+      <div className="flex flex-col md:flex-row justify-between items-center gap-y-4 py-8 mt-10 lg:mt-20">
+        <Image src={logo00} width={200} height={200} alt="" />
         <p className="text-sm md:text-base">
           © Copyright {date.getFullYear()} Sva prava zadržana.
         </p>

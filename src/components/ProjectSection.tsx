@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import keramickaZastita from "@/assets/image/second/keramicka-zastita.jpg";
 import carPolishing from "@/assets/image/second/poliranje-rupes.jpg";

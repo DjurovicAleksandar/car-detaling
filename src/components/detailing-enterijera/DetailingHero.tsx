@@ -32,7 +32,7 @@ const DetailingHero = () => {
         <h1
           data-scroll
           data-scroll-speed="0.2"
-          className="text-7xl md:text-[7rem] lg:text-[10rem] leading-[5rem] md:leading-[8rem] lg:leading-[10rem] opacity-80 text-center mt-0 md:mt-20"
+          className="text-6xl md:text-[7rem] lg:text-[10rem] leading-[5rem] md:leading-[8rem] lg:leading-[10rem] opacity-80 text-center mt-0 md:mt-20"
         >
           {phraseTitle
             .replaceAll(" ", "-")
@@ -60,7 +60,7 @@ const DetailingHero = () => {
             })}
         </h1>
         <motion.p
-          className="font-medium w-full leading-2 lg:leading-10 md:w-1/2 text-xl lg:text-[2.2rem] mt-20 md:mt-10 opacity-70 text-center"
+          className="font-light w-full leading-2 lg:leading-10 md:w-1/2 px-2 text-lg lg:text-[2.2rem] mt-20 md:mt-10 opacity-70 text-center"
           initial={{
             y: "5px",
             opacity: 0,
